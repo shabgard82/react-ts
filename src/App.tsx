@@ -3,6 +3,9 @@ import Headers from "./components/Header";
 import { useState } from "react";
 import CourseGoalList from "./components/CourseGoalList";
 import NewCourse from "./components/NewCourse";
+import Input from "./components/Input";
+import Button from "./components/Button";
+import Container from "./components/Container";
 
 export type GoalType = {
   title: string;
@@ -37,6 +40,24 @@ function App() {
       </Headers>
       <NewCourse onAddGoal={handleAddGoal} />
       <CourseGoalList goals={goals} handleDelete={handleDeleteGoal} />
+
+      {/* make custom inputs */}
+      <Input label="your name" id="name" type="text" />
+      <Input label="your age  " id="age" type="number" />
+
+      {/* make custom buttons */}
+      <p>
+        <Button el="button">a button</Button>
+      </p>
+      <p>
+        <Button el="anchor" href="https://google.com">
+          a link
+        </Button>
+      </p>
+
+      {/* make polymorphic components  */}
+      <Container as={Button}>click</Container>
+      {/* <Container as={Input}>type</Container> */}
     </div>
   );
 }
