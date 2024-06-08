@@ -56,7 +56,9 @@ function App() {
       </p>
 
       {/* make polymorphic components  */}
-      <Container as={Button}>click</Container>
+      <Container as={Button} onClick={() => null}>
+        click
+      </Container>
       {/* <Container as={Input}>type</Container> */}
     </div>
   );
