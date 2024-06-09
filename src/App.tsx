@@ -1,6 +1,6 @@
 import laptop from "../public/assets/laptop.jpeg";
 import Headers from "./components/Header";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import CourseGoalList from "./components/CourseGoalList";
 import NewCourse from "./components/NewCourse";
 import Input from "./components/Input";
@@ -32,7 +32,12 @@ function App() {
   function handleDeleteGoal(id: number) {
     setGoals((prevGoals) => prevGoals.filter((goal) => goal.id !== id));
   }
+  const inputRef = useRef<HTMLInputElement>(null);
 
+  function handleSave(data: unknown) {
+    const extractData = data as { name: string; age: string };
+    console.log(extractData);
+  }
   return (
     <div>
       <Headers image={{ src: laptop, alt: "a list of goals" }}>
@@ -59,7 +64,14 @@ function App() {
       <Container as={Button} onClick={() => null}>
         click
       </Container>
-      {/* <Container as={Input}>type</Container> */}
+      <Input label="test" id="test" ref={inputRef} />
+      <form onSave={handleSave}>
+        <Input type="text" label="Name" id="name" />
+        <Input type="number" label="Age" id="age" />
+        <p>
+          <Button el="button">save</Button>
+        </p>
+      </form>
     </div>
   );
 }
